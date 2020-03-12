@@ -4,7 +4,6 @@
 
 *IEEE link: <https://ieeexplore.ieee.org/document/8529272>*
 
-*Arxiv link:* 
 
 ## Description
 
