@@ -47,13 +47,13 @@ velocity -log encounter -overwrite
 
 - IO file (.io) : this file can be obtained after assigning the IO position in step 4.
 
-<img src="images/1.png" width=500px />
+<p align="center"><img src="images/1.png" width=500px ></p>
 
-<img src="images/2.png" width=500px />
+<p align="center"><img src="images/2.png" width=500px ></p>
 
 **MMMC view: this step is error prone! Please watch the video to understand the procedures.** 
 
-<img src="images/3.png" width=500px />
+<p align="center"><img src="images/3.png" width=500px ></p>
 
 - Library sets: 
   - Max_timing: csm18ic_ss.lib 
@@ -71,83 +71,83 @@ velocity -log encounter -overwrite
     - Hold analysis: best_case
   - Set hold time: Option->set mode->mode setup->optimization tab->hold slack=0.7
 
-<img src="images/4.png" width=800px />
+<p align="center"><img src="images/4.png" width=800px ></p>
 
 2. **Floorplan**: previously set to be 1600*2000, which seems too large. 50% of this size is
    proper in this round of tape-out.
 
-<img src="images/5.png" width=500px />
+<p align="center"><img src="images/5.png" width=500px ></p>
 
 3. **Power planning**: 
    - Connect global nets: VDD, VSS, mode set: TIEHI,TIELO
 
-<img src="images/6.png" width=500px />
+<p align="center"><img src="images/6.png" width=500px ></p>
 
-<img src="images/7.png" width=500px />
+<p align="center"><img src="images/7.png" width=500px ></p>
 
    - Add power ring and strip: VDD, VSS
 
-<img src="images/8.png" width=500px />
+<p align="center"><img src="images/8.png" width=500px ></p>
 
-<img src="images/9.png" width=500px />
+<p align="center"><img src="images/9.png" width=500px ></p>
 
    - Special route:
 
-<img src="images/10.png" width=500px />
+<p align="center"><img src="images/10.png" width=500px ></p>
 
 4. **Placement**
 - Place standard cells (timing-driven mode)
 
-<img src="images/11.png" width=500px />
+<p align="center"><img src="images/11.png" width=500px ></p>
 
    - PIN designer (after this step the pin positions can be exported to .io file)
 
-<img src="images/12.png" width=500px />
+<p align="center"><img src="images/12.png" width=500px ></p>
 
 The IO assignment of the last tape-out is as follows. For convenience, it’s better to follow the same position. (Some of the IO may be missing in this design comparing to the last design.)
 
-<img src="images/13.png" width=500px />
+<p align="center"><img src="images/13.png" width=500px ></p>
 
    - Optimize design: time->optimize: pre-CTS
 
-<img src="images/14.png" width=500px />
+<p align="center"><img src="images/14.png" width=500px ></p>
 
 5. **Clock tree synthesis** (import the clock.ctstch in the attachement)
 
-<img src="images/15.png" width=500px />
+<p align="center"><img src="images/15.png" width=500px ></p>
 
-<img src="images/16.png" width=500px />
+<p align="center"><img src="images/16.png" width=500px ></p>
 - Post-CTS optimization
 - Check geometry; check timing
 - Save to "-CTS.enc"
 - 
-<img src="images/17.png" width=500px />
+<p align="center"><img src="images/17.png" width=500px ></p>
 
 6. **Nanoroute**: timing driven and optimize via&wire
 
-<img src="images/18.png" width=500px />
+<p align="center"><img src="images/18.png" width=500px ></p>
 
 7. **Optimization** (before is OK! Except io)
 
-<img src="images/19.png" width=500px />
+<p align="center"><img src="images/19.png" width=500px ></p>
 
 - Check timing (for both setup and hold)
 
-<img src="images/20.png" width=500px />
+<p align="center"><img src="images/20.png" width=500px ></p>
 
 - Save to "-routed.enc"
 
 8. **Place fillers** (add dummy cells in the vacant locations to increase the physical strength of the chip)
 
-<img src="images/21.png" width=500px />
+<p align="center"><img src="images/21.png" width=500px ></p>
 
 9. **Verify the layout** and report generation
 
-<img src="images/22.png" width=500px />
+<p align="center"><img src="images/22.png" width=500px ></p>
 
-<img src="images/23.png" width=500px />
+<p align="center"><img src="images/23.png" width=500px ></p>
 
-<img src="images/24.png" width=500px />
+<p align="center"><img src="images/24.png" width=500px ></p>
 
 - Verify annena
 - And Violance report
@@ -163,27 +163,27 @@ The IO assignment of the last tape-out is as follows. For convenience, it’s be
 
 - Change RC extraction mode, Extract RC and save to sdf
 
-  <img src="images/35.png" width=300px />
+  <p align="center"><img src="images/35.png" width=300px ></p>
 
 - calculate delay
 
-<img src="images/25.png" width=300px />
+<p align="center"><img src="images/25.png" width=300px ></p>
 
 - Netlist
 
-<img src="images/26.png" width=300px />
+<p align="center"><img src="images/26.png" width=300px ></p>
 
 - Gate report
 
-<img src="images/27.png" width=300px />
+<p align="center"><img src="images/27.png" width=300px ></p>
 
 - Report summary
 
-<img src="images/28.png" width=300px />
+<p align="center"><img src="images/28.png" width=300px ></p>
 
 - Report_timing: GDS should be merged with library
 
-<img src="images/29.png" width=500px />
+<p align="center"><img src="images/29.png" width=500px ></p>
 
 12. Do the post-layout simulation with the netlist and the extracted RC delay (SDF file). The simulation procedure is the same as the post-synthesis simulation: back-annotate the testbench with the new SDF file.
 
@@ -195,13 +195,13 @@ The IO assignment of the last tape-out is as follows. For convenience, it’s be
 
 2. import GDS file: technology library & layer map (**Do not include digital library Label VDD! & VSS!**)
 
-<img src="images/30.png" width=500px />
+<p align="center"><img src="images/30.png" width=500px ></p>
 
-<img src="images/31.png" width=500px />
+<p align="center"><img src="images/31.png" width=500px ></p>
 
 3. check LVS&DRC (Should modify LVS rule as follows)
 
-<img src="images/32.png" width=500px />
+<p align="center"><img src="images/32.png" width=500px ></p>
 
 4. merge layout and connect with the pads
    - Change option: resolution
@@ -209,7 +209,7 @@ The IO assignment of the last tape-out is as follows. For convenience, it’s be
    - DRC and LVS with the pads
    - **NOTE: when wiring the layout with the pad, use the draw layer not the label layer to draw the line. Otherwise, the chip will fail without any warnings!**
 
-<img src="images/33.png" width=500px />
+<p align="center"><img src="images/33.png" width=500px ></p>
 
 
 
