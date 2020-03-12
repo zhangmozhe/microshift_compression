@@ -165,18 +165,21 @@ You can simulate the synthesized netlist through through the following step:
 Illustration of the Microshift compression
 </div>
 
-
-
 ![1583988827667](images/1583988827667.png)
 <div align="center">
 Hardward implementation diagram
 </div>
+<p align="center">
 <img src="images/chip.jpg" style="zoom:12%" />
+</p>
 
 <div align="center">
 Image sensor with proposed compression ISP
 </div>
+
+<p align="center">
 <img src="images/1583989451848.png" style="zoom:85%" />
+</p>
 
 <div align="center">
 Captured images with (left) and without (right) Microshift compression
