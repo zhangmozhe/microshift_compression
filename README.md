@@ -170,7 +170,7 @@ Illustration of the Microshift compression
 Hardward implementation diagram
 </div>
 <p align="center">
-<img src="images/chip.jpg" style="zoom:12%" />
+<img src="images/chip.jpg" width=500px />
 </p>
 
 <div align="center">
