@@ -1,0 +1,563 @@
+<deployment-project plugin="plugin.matlabhdlcoder" plugin-version="R2013a">
+  <configuration file="C:\Users\Bo\Desktop\microshift\HDL_generation.prj" location="C:\Users\Bo\Desktop\microshift" name="HDL_generation" target="target.matlab.hdlcoder" target-name="HDL Code Generation">
+    <param.AutoInferDefaultFile>${PROJECT_ROOT}\example_testbench_low_power.m</param.AutoInferDefaultFile>
+    <param.AutoInferUseVariableSize>false</param.AutoInferUseVariableSize>
+    <param.AutoInferUseUnboundedSize>false</param.AutoInferUseUnboundedSize>
+    <param.AutoInferVariableSizeThreshold>1024</param.AutoInferVariableSizeThreshold>
+    <param.AutoInferUnboundedSizeThreshold>2048</param.AutoInferUnboundedSizeThreshold>
+    <param.DefaultTestFile />
+    <param.TargetInterfaces.Validated>false</param.TargetInterfaces.Validated>
+    <param.unifiedParamStorage />
+    <param.configImportActive>false</param.configImportActive>
+    <param.fixptconv.enum.needfixedpoint>option.fixptconv.enum.needfixedpoint.no</param.fixptconv.enum.needfixedpoint>
+    <param.hdl.WorkingDirectory>option.hdl.ProjectDirectory</param.hdl.WorkingDirectory>
+    <param.hdl.WorkingSpecifiedDirectory />
+    <param.hdl.BuildDirectory>option.hdl.ProjectDirectory</param.hdl.BuildDirectory>
+    <param.hdl.BuildSpecifiedDirectory />
+    <param.fixptconv.InstrumentedMexFile>${PROJECT_ROOT}\codegen\buffer_control\fixpt\buffer_control_float_mex.mexw64</param.fixptconv.InstrumentedMexFile>
+    <param.fixptconv.InstrumentedBuildChecksum>3314271660</param.fixptconv.InstrumentedBuildChecksum>
+    <param.fixptconv.ShowCoverage>true</param.fixptconv.ShowCoverage>
+    <param.fixptconv.FixedPointValidationChecksum>0.5872460370163298</param.fixptconv.FixedPointValidationChecksum>
+    <param.fixptconv.FixedPointSourceCodeChecksum>0.23647950180876443</param.fixptconv.FixedPointSourceCodeChecksum>
+    <param.fixptconv.FixedPointStaticAnalysisChecksum />
+    <param.fixptconv.DefaultTestFile>${PROJECT_ROOT}\example_testbench.m</param.fixptconv.DefaultTestFile>
+    <param.fixptconv.ExcludedFixedPointVerificationFiles />
+    <param.fixptconv.ExcludedFixedPointSimulationFiles />
+    <param.fixptconv.FixptProposalKind>option.fixptconv.ProposeWordLenBasedOnFracLen</param.fixptconv.FixptProposalKind>
+    <param.fixptconv.DefaultFixptWordLength>14</param.fixptconv.DefaultFixptWordLength>
+    <param.fixptconv.DefaultFixptFractionLength>0</param.fixptconv.DefaultFixptFractionLength>
+    <param.fixptconv.ContainerTypes>false</param.fixptconv.ContainerTypes>
+    <param.fixptconv.SafetyMargin>20</param.fixptconv.SafetyMargin>
+    <param.fixptconv.ProposeUsingDesignMinMaxAnd>option.fixptconv.ProposeUsingDesignMinMaxAnd.DerivedMinMax</param.fixptconv.ProposeUsingDesignMinMaxAnd>
+    <param.transformedVariables>
+      <UserEntities />
+    </param.transformedVariables>
+    <param.computedVariables>
+      <ComputedEntities />
+    </param.computedVariables>
+    <param.fixptconv.FiMathString>fimath('RoundingMethod', 'Floor', 'OverflowAction', 'Wrap', 'ProductMode', 'FullPrecision', 'SumMode', 'FullPrecision')</param.fixptconv.FiMathString>
+    <param.fixptconv.DefaultRoundMode>option.fixptconv.proposetypes.floor</param.fixptconv.DefaultRoundMode>
+    <param.fixptconv.DefaultOverflowMode>option.fixptconv.proposetypes.wrap</param.fixptconv.DefaultOverflowMode>
+    <param.fixptconv.LogAllIOValues>false</param.fixptconv.LogAllIOValues>
+    <param.fixptconv.DetectOverflows>false</param.fixptconv.DetectOverflows>
+    <param.fixptconv.LogHistogram>false</param.fixptconv.LogHistogram>
+    <param.fixptconv.FixPtFileNameSuffix>_fixpt</param.fixptconv.FixPtFileNameSuffix>
+    <param.fixptconv.AutoScaleLoopIndexVariables>false</param.fixptconv.AutoScaleLoopIndexVariables>
+    <param.fixptconv.ConvertConstantsToFi>true</param.fixptconv.ConvertConstantsToFi>
+    <param.fixptconv.FICastFiVariables>false</param.fixptconv.FICastFiVariables>
+    <param.fixptconv.SuppressErrorMessages>true</param.fixptconv.SuppressErrorMessages>
+    <param.fixptconv.generatefixptcode.function_replacements>
+      <FunctionReplacements />
+    </param.fixptconv.generatefixptcode.function_replacements>
+    <param.fixptconv.PlotFunction />
+    <param.SDIPlot>false</param.SDIPlot>
+    <param.EnableCodeEfficiencyChecks>true</param.EnableCodeEfficiencyChecks>
+    <param.fixptconv.OptimizeWholeNumbers>false</param.fixptconv.OptimizeWholeNumbers>
+    <param.fixptconv.DefaultFixedPointSignedness>option.fixptconv.DefaultFixedPointSignedness.Automatic</param.fixptconv.DefaultFixedPointSignedness>
+    <param.fixptconv.StaticAnalysisTimeout />
+    <param.fixptconv.StaticAnalysisGlobalRangesOnly>false</param.fixptconv.StaticAnalysisGlobalRangesOnly>
+    <var.lastFixedPointAction>option.fixedPointAction.verify</var.lastFixedPointAction>
+    <var.lastSimContext>&lt;?xml version="1.0" encoding="UTF-8" standalone="yes"?&gt;&lt;SimulationContext&gt;&lt;testFiles&gt;&lt;file&gt;C:\Users\Bo\OneDrive - HKUST Connect\Bit depth compression\FPGA Implementation\Final\temp\example_testbench.m&lt;/file&gt;&lt;/testFiles&gt;&lt;synthetic&gt;false&lt;/synthetic&gt;&lt;/SimulationContext&gt;</var.lastSimContext>
+    <var.lastVerifyContext>&lt;?xml version="1.0" encoding="UTF-8" standalone="yes"?&gt;&lt;SimulationContext&gt;&lt;testFiles&gt;&lt;file&gt;C:\Users\Bo\OneDrive - HKUST Connect\Bit depth compression\FPGA Implementation\Final\temp\example_testbench.m&lt;/file&gt;&lt;/testFiles&gt;&lt;syntheticCode&gt;&lt;/syntheticCode&gt;&lt;synthetic&gt;false&lt;/synthetic&gt;&lt;/SimulationContext&gt;</var.lastVerifyContext>
+    <param.fpDataRoot>C:\Users\Bo\OneDrive - HKUST Connect\Bit depth compression\FPGA Implementation\Final\temp\codegen\compression_hdl\fixpt/guiFpReport.mat</param.fpDataRoot>
+    <param.fpUserFileChecksum />
+    <var.snapshotChecksum>3748761466</var.snapshotChecksum>
+    <var.FixedPointAnalysisMode>option.FixedPointAnalysisMode.Sim</var.FixedPointAnalysisMode>
+    <param.FixedPointUseDesignRanges>false</param.FixedPointUseDesignRanges>
+    <param.hdl.Workflow>option.workflow.GenericAsicFpga</param.hdl.Workflow>
+    <param.hdl.TargetPlatform />
+    <param.hdl.SynthesisTool>No synthesis tool available on system path</param.hdl.SynthesisTool>
+    <param.hdl.InputFrequency>100</param.hdl.InputFrequency>
+    <param.hdl.TargetFrequency>100</param.hdl.TargetFrequency>
+    <param.hdl.ReferenceDesign />
+    <param.hdl.ReferenceDesignPath />
+    <param.hdl.IPCoreName>compression_hdl_lowpower_ipcore</param.hdl.IPCoreName>
+    <param.hdl.IPCoreVersion>1.0</param.hdl.IPCoreVersion>
+    <param.hdl.AdditionalIPFiles />
+    <param.hdl.ExecutionMode>option.hdl.FreeRunning</param.hdl.ExecutionMode>
+    <param.hdl.SynthesisToolChipFamily />
+    <param.hdl.SynthesisToolDeviceName />
+    <param.hdl.SynthesisToolPackageName />
+    <param.hdl.SynthesisToolSpeedValue />
+    <param.hdl.TargetInterface>
+      <param.hdl.TargetInterface />
+    </param.hdl.TargetInterface>
+    <param.hdl.TargetLanguage>option.hdl.Verilog</param.hdl.TargetLanguage>
+    <param.hdl.CheckConformance>true</param.hdl.CheckConformance>
+    <param.hdl.LaunchConformanceReport>true</param.hdl.LaunchConformanceReport>
+    <param.hdl.GenerateHDLCode>true</param.hdl.GenerateHDLCode>
+    <param.hdl.GenerateEDAScripts>true</param.hdl.GenerateEDAScripts>
+    <param.hdl.GenerateComments>true</param.hdl.GenerateComments>
+    <param.hdl.MATLABSourceComments>false</param.hdl.MATLABSourceComments>
+    <param.hdl.GenerateReport>true</param.hdl.GenerateReport>
+    <param.hdl.VHDLFileExt>.vhd</param.hdl.VHDLFileExt>
+    <param.hdl.VerilogFileExt>.v</param.hdl.VerilogFileExt>
+    <param.hdl.NoResetInitializationMode>option.hdl.NoResetNone</param.hdl.NoResetInitializationMode>
+    <param.hdl.DateComment>true</param.hdl.DateComment>
+    <param.hdl.UserComment />
+    <param.hdl.ModulePrefix />
+    <param.hdl.PackagePostfix>_pkg</param.hdl.PackagePostfix>
+    <param.hdl.TimingControllerPostfix>_tc</param.hdl.TimingControllerPostfix>
+    <param.hdl.EntityConflictPostfix>_block</param.hdl.EntityConflictPostfix>
+    <param.hdl.ReservedWordPostfix>_rsvd</param.hdl.ReservedWordPostfix>
+    <param.hdl.ClockProcessPostfix>_process</param.hdl.ClockProcessPostfix>
+    <param.hdl.ComplexRealPostfix>_re</param.hdl.ComplexRealPostfix>
+    <param.hdl.ComplexImagPostfix>_im</param.hdl.ComplexImagPostfix>
+    <param.hdl.PipelinePostfix>_pipe</param.hdl.PipelinePostfix>
+    <param.hdl.EnablePrefix>enb</param.hdl.EnablePrefix>
+    <param.hdl.InlineConfigurations>true</param.hdl.InlineConfigurations>
+    <param.hdl.VHDLLibraryName>work</param.hdl.VHDLLibraryName>
+    <param.hdl.UseRisingEdge>false</param.hdl.UseRisingEdge>
+    <param.hdl.UseMatrixTypesInHDL>false</param.hdl.UseMatrixTypesInHDL>
+    <param.hdl.HDLCodingStandard>option.hdl.Industry</param.hdl.HDLCodingStandard>
+    <var.HDLCodingStandard_FilterPassingRules_enable>true</var.HDLCodingStandard_FilterPassingRules_enable>
+    <var.HDLCodingStandard_DetectDuplicateNamesCheck_enable>true</var.HDLCodingStandard_DetectDuplicateNamesCheck_enable>
+    <var.HDLCodingStandard_HDLKeywords_enable>true</var.HDLCodingStandard_HDLKeywords_enable>
+    <var.HDLCodingStandard_ModuleInstanceEntityNameLength_enable>true</var.HDLCodingStandard_ModuleInstanceEntityNameLength_enable>
+    <var.HDLCodingStandard_ModuleInstanceEntityNameLength_min>2</var.HDLCodingStandard_ModuleInstanceEntityNameLength_min>
+    <var.HDLCodingStandard_ModuleInstanceEntityNameLength_max>40</var.HDLCodingStandard_ModuleInstanceEntityNameLength_max>
+    <var.HDLCodingStandard_SignalPortParamNameLength_enable>true</var.HDLCodingStandard_SignalPortParamNameLength_enable>
+    <var.HDLCodingStandard_SignalPortParamNameLength_min>2</var.HDLCodingStandard_SignalPortParamNameLength_min>
+    <var.HDLCodingStandard_SignalPortParamNameLength_max>40</var.HDLCodingStandard_SignalPortParamNameLength_max>
+    <var.HDLCodingStandard_MinimizeClockEnableCheck_enable>true</var.HDLCodingStandard_MinimizeClockEnableCheck_enable>
+    <var.HDLCodingStandard_RemoveResetCheck_enable>true</var.HDLCodingStandard_RemoveResetCheck_enable>
+    <var.HDLCodingStandard_AsynchronousResetCheck_enable>true</var.HDLCodingStandard_AsynchronousResetCheck_enable>
+    <var.HDLCodingStandard_MinimizeVariableUsage_enable>true</var.HDLCodingStandard_MinimizeVariableUsage_enable>
+    <var.HDLCodingStandard_InitialStatements_enable>true</var.HDLCodingStandard_InitialStatements_enable>
+    <var.HDLCodingStandard_ConditionalRegionCheck_enable>true</var.HDLCodingStandard_ConditionalRegionCheck_enable>
+    <var.HDLCodingStandard_ConditionalRegionCheck_length>2</var.HDLCodingStandard_ConditionalRegionCheck_length>
+    <var.HDLCodingStandard_IfElseChain_enable>true</var.HDLCodingStandard_IfElseChain_enable>
+    <var.HDLCodingStandard_IfElseChain_length>16</var.HDLCodingStandard_IfElseChain_length>
+    <var.HDLCodingStandard_IfElseNesting_enable>true</var.HDLCodingStandard_IfElseNesting_enable>
+    <var.HDLCodingStandard_IfElseNesting_depth>5</var.HDLCodingStandard_IfElseNesting_depth>
+    <var.HDLCodingStandard_MultiplierBitWidth_enable>true</var.HDLCodingStandard_MultiplierBitWidth_enable>
+    <var.HDLCodingStandard_MultiplierBitWidth_width>16</var.HDLCodingStandard_MultiplierBitWidth_width>
+    <var.HDLCodingStandard_NonIntegerTypes_enable>true</var.HDLCodingStandard_NonIntegerTypes_enable>
+    <var.HDLCodingStandard_LineLength_enable>true</var.HDLCodingStandard_LineLength_enable>
+    <var.HDLCodingStandard_LineLength_length>120</var.HDLCodingStandard_LineLength_length>
+    <param.hdl.ResetType>option.hdl.Asynchronous</param.hdl.ResetType>
+    <param.hdl.ResetAssertedLevel>option.hdl.ActiveLow</param.hdl.ResetAssertedLevel>
+    <param.hdl.ResetInputPort>reset_n</param.hdl.ResetInputPort>
+    <param.hdl.ClockInputPort>clk</param.hdl.ClockInputPort>
+    <param.hdl.ClockEdge>option.hdl.Rising</param.hdl.ClockEdge>
+    <param.hdl.ClockEnableInputPort>clk_enable</param.hdl.ClockEnableInputPort>
+    <param.hdl.Oversampling>1</param.hdl.Oversampling>
+    <param.hdl.EnableRate>option.hdl.InputDataRate</param.hdl.EnableRate>
+    <param.hdl.MinimizeClockEnables>false</param.hdl.MinimizeClockEnables>
+    <param.hdl.TimingControllerArch>option.hdl.Default</param.hdl.TimingControllerArch>
+    <param.hdl.InputType>option.hdl.StdLogicVector</param.hdl.InputType>
+    <param.hdl.OutputType>option.hdl.SameAsInputType</param.hdl.OutputType>
+    <param.hdl.ClockEnableOutputPort>ce_out</param.hdl.ClockEnableOutputPort>
+    <param.hdl.ScalarizePorts>false</param.hdl.ScalarizePorts>
+    <param.hdl.MapPersistentVarsToRAM>true</param.hdl.MapPersistentVarsToRAM>
+    <param.hdl.RAMThreshold>16</param.hdl.RAMThreshold>
+    <param.hdl.MapPipelineDelaysToRAM>true</param.hdl.MapPipelineDelaysToRAM>
+    <param.hdl.RAMVariableNames />
+    <param.hdl.MultiplierPartitioningThreshold>10</param.hdl.MultiplierPartitioningThreshold>
+    <param.hdl.RegisterInputs>true</param.hdl.RegisterInputs>
+    <param.hdl.RegisterOutputs>true</param.hdl.RegisterOutputs>
+    <param.hdl.DistributedPipelining>true</param.hdl.DistributedPipelining>
+    <param.hdl.DistributedPipeliningPriority>option.hdl.NumericalIntegrity</param.hdl.DistributedPipeliningPriority>
+    <param.hdl.PreserveDesignDelays>true</param.hdl.PreserveDesignDelays>
+    <param.hdl.InputPipeline>1</param.hdl.InputPipeline>
+    <param.hdl.OutputPipeline>2</param.hdl.OutputPipeline>
+    <param.hdl.PipelineVariables />
+    <param.hdl.ResourceSharing>10</param.hdl.ResourceSharing>
+    <param.hdl.MultiplierSharingMinimumBitwidth>0</param.hdl.MultiplierSharingMinimumBitwidth>
+    <param.hdl.MultiplierPromotionThreshold>0</param.hdl.MultiplierPromotionThreshold>
+    <param.hdl.AdderSharingMinimumBitwidth>8</param.hdl.AdderSharingMinimumBitwidth>
+    <param.hdl.ShareMultipliers>true</param.hdl.ShareMultipliers>
+    <param.hdl.ShareAdders>false</param.hdl.ShareAdders>
+    <param.hdl.ConstantMultiplierOptimization>option.hdl.NONE</param.hdl.ConstantMultiplierOptimization>
+    <param.hdl.LoopOptimization>option.hdl.UnrollLoops</param.hdl.LoopOptimization>
+    <param.hdl.InitializeBlockRAM>true</param.hdl.InitializeBlockRAM>
+    <param.hdl.RAMArchitecture>option.hdl.EnabledRAM</param.hdl.RAMArchitecture>
+    <param.hdl.PartitionFunctions>false</param.hdl.PartitionFunctions>
+    <param.hdl.InstantiateFunctions>true</param.hdl.InstantiateFunctions>
+    <param.hdl.GenerateMLFcnBlock>false</param.hdl.GenerateMLFcnBlock>
+    <param.hdl.GenerateXSGBlock>false</param.hdl.GenerateXSGBlock>
+    <param.hdl.SearchPath />
+    <param.hdl.GenerateSimulinkModel>false</param.hdl.GenerateSimulinkModel>
+    <param.hdl.HDLCompileFilePostfix>_compile.do</param.hdl.HDLCompileFilePostfix>
+    <param.hdl.HDLCompileInit>vlib %s\n</param.hdl.HDLCompileInit>
+    <param.hdl.HDLCompileVHDLCmd>vcom %s %s\n</param.hdl.HDLCompileVHDLCmd>
+    <param.hdl.HDLCompileVerilogCmd>vlog %s %s\n</param.hdl.HDLCompileVerilogCmd>
+    <param.hdl.HDLCompileTerm />
+    <param.hdl.HDLSimFilePostfix>_sim.do</param.hdl.HDLSimFilePostfix>
+    <param.hdl.HDLSimInit>onbreak resume\nonerror resume\n</param.hdl.HDLSimInit>
+    <param.hdl.HDLSimCmd>vsim -novopt %s.%s\n</param.hdl.HDLSimCmd>
+    <param.hdl.HDLSimViewWaveCmd>add wave sim:%s\n</param.hdl.HDLSimViewWaveCmd>
+    <param.hdl.HDLSimTerm>run -all\n</param.hdl.HDLSimTerm>
+    <param.hdl.HDLSynthTool>option.hdl.None</param.hdl.HDLSynthTool>
+    <var.toolSpecificEDAScript>hdlgetedascript(''</var.toolSpecificEDAScript>
+    <param.hdl.HDLSynthFilePostfix />
+    <param.hdl.HDLSynthInit />
+    <param.hdl.HDLSynthCmd />
+    <param.hdl.HDLSynthTerm />
+    <param.hdl.HDLLintTool>option.hdl.None</param.hdl.HDLLintTool>
+    <param.hdl.HDLLintInit />
+    <param.hdl.HDLLintCmd />
+    <param.hdl.HDLLintTerm />
+    <param.isHDLVerifierInstalled>true</param.isHDLVerifierInstalled>
+    <param.hdl.GenerateHDLTestBench>true</param.hdl.GenerateHDLTestBench>
+    <param.hdl.SimulateGeneratedCode>true</param.hdl.SimulateGeneratedCode>
+    <param.hdl.SimulationTool>ModelSim</param.hdl.SimulationTool>
+    <param.hdl.TestBenchPostfix>_tb</param.hdl.TestBenchPostfix>
+    <param.hdl.ForceClock>true</param.hdl.ForceClock>
+    <param.hdl.ClockHighTime>50</param.hdl.ClockHighTime>
+    <param.hdl.ClockLowTime>50</param.hdl.ClockLowTime>
+    <param.hdl.HoldTime>2</param.hdl.HoldTime>
+    <param.hdl.ForceClockEnable>true</param.hdl.ForceClockEnable>
+    <param.hdl.TestBenchClockEnableDelay>0</param.hdl.TestBenchClockEnableDelay>
+    <param.hdl.ForceReset>true</param.hdl.ForceReset>
+    <param.hdl.ResetLength>2</param.hdl.ResetLength>
+    <param.hdl.HoldInputDataBetweenSamples>true</param.hdl.HoldInputDataBetweenSamples>
+    <param.hdl.InputDataInterval>0</param.hdl.InputDataInterval>
+    <param.hdl.InitializeTestBenchInputs>true</param.hdl.InitializeTestBenchInputs>
+    <param.hdl.MultifileTestBench>true</param.hdl.MultifileTestBench>
+    <param.hdl.TestBenchDataPostfix>_data</param.hdl.TestBenchDataPostfix>
+    <param.hdl.TestReferencePostfix>_ref</param.hdl.TestReferencePostfix>
+    <param.hdl.UseFileIOInTestBench>true</param.hdl.UseFileIOInTestBench>
+    <param.hdl.IgnoreDataChecking>0</param.hdl.IgnoreDataChecking>
+    <param.hdl.SimulationIterationLimit>0</param.hdl.SimulationIterationLimit>
+    <param.hdl.UseFiAccelForTestBench>true</param.hdl.UseFiAccelForTestBench>
+    <param.hdl.GenerateCosimTestBench>true</param.hdl.GenerateCosimTestBench>
+    <param.hdl.CosimLogOutputs>true</param.hdl.CosimLogOutputs>
+    <param.hdl.CosimTool>option.hdl.ModelSim</param.hdl.CosimTool>
+    <param.hdl.CosimRunMode>option.hdl.GUI</param.hdl.CosimRunMode>
+    <param.hdl.SimulateCosimTestBench>true</param.hdl.SimulateCosimTestBench>
+    <param.hdl.CosimClockHighTime>5</param.hdl.CosimClockHighTime>
+    <param.hdl.CosimClockLowTime>5</param.hdl.CosimClockLowTime>
+    <param.hdl.CosimHoldTime>2</param.hdl.CosimHoldTime>
+    <param.hdl.CosimClockEnableDelay>0</param.hdl.CosimClockEnableDelay>
+    <param.hdl.CosimResetLength>2</param.hdl.CosimResetLength>
+    <param.hdl.GenerateFILTestBench>false</param.hdl.GenerateFILTestBench>
+    <param.hdl.FILLogOutputs>false</param.hdl.FILLogOutputs>
+    <param.hdl.FILBoardName>Choose a board</param.hdl.FILBoardName>
+    <param.hdl.FILConnection />
+    <param.hdl.FILBoardIPAddress>192.168.0.2</param.hdl.FILBoardIPAddress>
+    <param.hdl.FILBoardMACAddress>00-0A-35-02-21-8A</param.hdl.FILBoardMACAddress>
+    <param.hdl.FILAdditionalFiles />
+    <param.hdl.SimulateFILTestBench>false</param.hdl.SimulateFILTestBench>
+    <param.hdl.AdditionalSynthesisProjectFiles />
+    <param.hdl.CriticalPathSource>option.hdl.Preroute</param.hdl.CriticalPathSource>
+    <param.hdl.EmbeddedSystemTool>Xilinx PlanAhead with Embedded Design</param.hdl.EmbeddedSystemTool>
+    <param.hdl.EmbeddedSystemProjectFolder>codegen/pa_prj</param.hdl.EmbeddedSystemProjectFolder>
+    <param.hdl.BitstreamBuildMode>false</param.hdl.BitstreamBuildMode>
+    <unset>
+      <param.AutoInferUseVariableSize />
+      <param.AutoInferUseUnboundedSize />
+      <param.AutoInferVariableSizeThreshold />
+      <param.AutoInferUnboundedSizeThreshold />
+      <param.DefaultTestFile />
+      <param.TargetInterfaces.Validated />
+      <param.unifiedParamStorage />
+      <param.configImportActive />
+      <param.hdl.WorkingDirectory />
+      <param.hdl.WorkingSpecifiedDirectory />
+      <param.hdl.BuildDirectory />
+      <param.hdl.BuildSpecifiedDirectory />
+      <param.fixptconv.ShowCoverage />
+      <param.fixptconv.ExcludedFixedPointVerificationFiles />
+      <param.fixptconv.ExcludedFixedPointSimulationFiles />
+      <param.fixptconv.DefaultFixptWordLength />
+      <param.fixptconv.ContainerTypes />
+      <param.fixptconv.DefaultRoundMode />
+      <param.fixptconv.DefaultOverflowMode />
+      <param.fixptconv.LogAllIOValues />
+      <param.fixptconv.DetectOverflows />
+      <param.fixptconv.LogHistogram />
+      <param.fixptconv.FixPtFileNameSuffix />
+      <param.fixptconv.AutoScaleLoopIndexVariables />
+      <param.fixptconv.ConvertConstantsToFi />
+      <param.fixptconv.FICastFiVariables />
+      <param.fixptconv.SuppressErrorMessages />
+      <param.fixptconv.PlotFunction />
+      <param.SDIPlot />
+      <param.fixptconv.DefaultFixedPointSignedness />
+      <param.fixptconv.StaticAnalysisTimeout />
+      <param.fixptconv.StaticAnalysisGlobalRangesOnly />
+      <param.fpUserFileChecksum />
+      <var.FixedPointAnalysisMode />
+      <param.FixedPointUseDesignRanges />
+      <param.hdl.Workflow />
+      <param.hdl.TargetPlatform />
+      <param.hdl.InputFrequency />
+      <param.hdl.TargetFrequency />
+      <param.hdl.ReferenceDesign />
+      <param.hdl.ReferenceDesignPath />
+      <param.hdl.IPCoreName />
+      <param.hdl.IPCoreVersion />
+      <param.hdl.AdditionalIPFiles />
+      <param.hdl.ExecutionMode />
+      <param.hdl.SynthesisToolChipFamily />
+      <param.hdl.SynthesisToolDeviceName />
+      <param.hdl.SynthesisToolPackageName />
+      <param.hdl.SynthesisToolSpeedValue />
+      <param.hdl.TargetInterface />
+      <param.hdl.LaunchConformanceReport />
+      <param.hdl.GenerateHDLCode />
+      <param.hdl.GenerateEDAScripts />
+      <param.hdl.GenerateComments />
+      <param.hdl.MATLABSourceComments />
+      <param.hdl.VHDLFileExt />
+      <param.hdl.VerilogFileExt />
+      <param.hdl.NoResetInitializationMode />
+      <param.hdl.DateComment />
+      <param.hdl.UserComment />
+      <param.hdl.ModulePrefix />
+      <param.hdl.PackagePostfix />
+      <param.hdl.TimingControllerPostfix />
+      <param.hdl.EntityConflictPostfix />
+      <param.hdl.ReservedWordPostfix />
+      <param.hdl.ClockProcessPostfix />
+      <param.hdl.ComplexRealPostfix />
+      <param.hdl.ComplexImagPostfix />
+      <param.hdl.PipelinePostfix />
+      <param.hdl.EnablePrefix />
+      <param.hdl.InlineConfigurations />
+      <param.hdl.VHDLLibraryName />
+      <param.hdl.UseRisingEdge />
+      <param.hdl.UseMatrixTypesInHDL />
+      <var.HDLCodingStandard_DetectDuplicateNamesCheck_enable />
+      <var.HDLCodingStandard_HDLKeywords_enable />
+      <var.HDLCodingStandard_ModuleInstanceEntityNameLength_enable />
+      <var.HDLCodingStandard_ModuleInstanceEntityNameLength_min />
+      <var.HDLCodingStandard_SignalPortParamNameLength_enable />
+      <var.HDLCodingStandard_SignalPortParamNameLength_min />
+      <var.HDLCodingStandard_SignalPortParamNameLength_max />
+      <var.HDLCodingStandard_AsynchronousResetCheck_enable />
+      <var.HDLCodingStandard_InitialStatements_enable />
+      <var.HDLCodingStandard_ConditionalRegionCheck_enable />
+      <var.HDLCodingStandard_IfElseChain_enable />
+      <var.HDLCodingStandard_IfElseNesting_enable />
+      <var.HDLCodingStandard_MultiplierBitWidth_enable />
+      <var.HDLCodingStandard_MultiplierBitWidth_width />
+      <var.HDLCodingStandard_NonIntegerTypes_enable />
+      <var.HDLCodingStandard_LineLength_enable />
+      <param.hdl.ResetType />
+      <param.hdl.ClockInputPort />
+      <param.hdl.ClockEdge />
+      <param.hdl.ClockEnableInputPort />
+      <param.hdl.Oversampling />
+      <param.hdl.EnableRate />
+      <param.hdl.MinimizeClockEnables />
+      <param.hdl.TimingControllerArch />
+      <param.hdl.InputType />
+      <param.hdl.OutputType />
+      <param.hdl.ClockEnableOutputPort />
+      <param.hdl.ScalarizePorts />
+      <param.hdl.MapPersistentVarsToRAM />
+      <param.hdl.RAMVariableNames />
+      <param.hdl.DistributedPipeliningPriority />
+      <param.hdl.PipelineVariables />
+      <param.hdl.MultiplierSharingMinimumBitwidth />
+      <param.hdl.MultiplierPromotionThreshold />
+      <param.hdl.ShareMultipliers />
+      <param.hdl.ShareAdders />
+      <param.hdl.ConstantMultiplierOptimization />
+      <param.hdl.InitializeBlockRAM />
+      <param.hdl.RAMArchitecture />
+      <param.hdl.PartitionFunctions />
+      <param.hdl.GenerateMLFcnBlock />
+      <param.hdl.GenerateXSGBlock />
+      <param.hdl.SearchPath />
+      <param.hdl.GenerateSimulinkModel />
+      <param.hdl.HDLCompileFilePostfix />
+      <param.hdl.HDLCompileInit />
+      <param.hdl.HDLCompileVHDLCmd />
+      <param.hdl.HDLCompileVerilogCmd />
+      <param.hdl.HDLCompileTerm />
+      <param.hdl.HDLSimFilePostfix />
+      <param.hdl.HDLSimInit />
+      <param.hdl.HDLSimCmd />
+      <param.hdl.HDLSimViewWaveCmd />
+      <param.hdl.HDLSimTerm />
+      <param.hdl.HDLSynthTool />
+      <var.toolSpecificEDAScript />
+      <param.hdl.HDLSynthFilePostfix />
+      <param.hdl.HDLSynthInit />
+      <param.hdl.HDLSynthCmd />
+      <param.hdl.HDLSynthTerm />
+      <param.hdl.HDLLintTool />
+      <param.hdl.HDLLintInit />
+      <param.hdl.HDLLintCmd />
+      <param.hdl.HDLLintTerm />
+      <param.isHDLVerifierInstalled />
+      <param.hdl.SimulationTool />
+      <param.hdl.TestBenchPostfix />
+      <param.hdl.ForceClock />
+      <param.hdl.HoldTime />
+      <param.hdl.ForceClockEnable />
+      <param.hdl.TestBenchClockEnableDelay />
+      <param.hdl.ForceReset />
+      <param.hdl.ResetLength />
+      <param.hdl.HoldInputDataBetweenSamples />
+      <param.hdl.InputDataInterval />
+      <param.hdl.TestBenchDataPostfix />
+      <param.hdl.TestReferencePostfix />
+      <param.hdl.UseFileIOInTestBench />
+      <param.hdl.IgnoreDataChecking />
+      <param.hdl.SimulationIterationLimit />
+      <param.hdl.UseFiAccelForTestBench />
+      <param.hdl.CosimTool />
+      <param.hdl.CosimClockHighTime />
+      <param.hdl.CosimClockLowTime />
+      <param.hdl.CosimHoldTime />
+      <param.hdl.CosimClockEnableDelay />
+      <param.hdl.CosimResetLength />
+      <param.hdl.GenerateFILTestBench />
+      <param.hdl.FILLogOutputs />
+      <param.hdl.FILBoardName />
+      <param.hdl.FILConnection />
+      <param.hdl.FILBoardIPAddress />
+      <param.hdl.FILBoardMACAddress />
+      <param.hdl.FILAdditionalFiles />
+      <param.hdl.SimulateFILTestBench />
+      <param.hdl.AdditionalSynthesisProjectFiles />
+      <param.hdl.CriticalPathSource />
+      <param.hdl.EmbeddedSystemTool />
+      <param.hdl.EmbeddedSystemProjectFolder />
+      <param.hdl.BitstreamBuildMode />
+    </unset>
+    <fileset.entrypoints>
+      <file custom-data-expanded="false" value="${PROJECT_ROOT}\compression_hdl_lowpower.m">
+        <Inputs fileName="compression_hdl_lowpower.m" functionName="compression_hdl_lowpower">
+          <Input Name="pixelIn">
+            <Class>uint8</Class>
+            <Size>1 x 1</Size>
+            <Value />
+            <InitialValue />
+            <UserDefined>false</UserDefined>
+            <Complex>false</Complex>
+          </Input>
+          <Input Name="hStart">
+            <Class>logical</Class>
+            <Size>1 x 1</Size>
+            <Value />
+            <InitialValue />
+            <UserDefined>false</UserDefined>
+          </Input>
+          <Input Name="hEnd">
+            <Class>logical</Class>
+            <Size>1 x 1</Size>
+            <Value />
+            <InitialValue />
+            <UserDefined>false</UserDefined>
+          </Input>
+          <Input Name="vStart">
+            <Class>logical</Class>
+            <Size>1 x 1</Size>
+            <Value />
+            <InitialValue />
+            <UserDefined>false</UserDefined>
+          </Input>
+          <Input Name="vEnd">
+            <Class>logical</Class>
+            <Size>1 x 1</Size>
+            <Value />
+            <InitialValue />
+            <UserDefined>false</UserDefined>
+          </Input>
+          <Input Name="valid">
+            <Class>logical</Class>
+            <Size>1 x 1</Size>
+            <Value />
+            <InitialValue />
+            <UserDefined>false</UserDefined>
+          </Input>
+          <Input Name="mode">
+            <Class>embedded.fi</Class>
+            <Size>1 x 1</Size>
+            <Value />
+            <InitialValue />
+            <UserDefined>false</UserDefined>
+            <Complex>false</Complex>
+            <numerictype>
+              <DataTypeMode>'Fixed-point: binary point scaling'</DataTypeMode>
+              <Signedness>'Unsigned'</Signedness>
+              <WordLength>2</WordLength>
+              <FractionLength>0</FractionLength>
+            </numerictype>
+            <fimathislocal>false</fimathislocal>
+          </Input>
+        </Inputs>
+      </file>
+    </fileset.entrypoints>
+    <fileset.scriptfile>
+      <file>${PROJECT_ROOT}\example_testbench_low_power.m</file>
+    </fileset.scriptfile>
+    <fileset.package />
+    <build-deliverables />
+    <workflow>
+      <step key="category.workflow.top" skipped="false" />
+      <step key="category.inputtypes" skipped="false" />
+      <step key="category.float2fixedconversion" skipped="false" />
+      <step key="category.workflow.selecttarget" skipped="false" />
+      <step key="category.workflow.targetinterface" skipped="false" />
+      <step key="category.workflow.generate" skipped="false" />
+      <step key="category.workflow.verification" skipped="false" />
+      <step key="category.workflow.hdltb" skipped="false" />
+      <step key="category.workflow.cosim" skipped="false" />
+      <step key="category.workflow.FIL" skipped="true" />
+      <step key="category.workflow.synthesis" skipped="false" />
+      <step key="category.workflow.createsynthesisproject" skipped="false" />
+      <step key="category.workflow.logicsynthesis" skipped="false" />
+      <step key="category.workflow.vivadosynthesis" skipped="false" />
+      <step key="category.workflow.par" skipped="false" />
+      <step key="category.workflow.vivadoimplementation" skipped="false" />
+      <step key="category.workflow.reportcriticalpath" skipped="false" />
+      <step key="category.workflow.embeddedsystemintegration" skipped="true" />
+      <step key="category.workflow.createembeddedsystemproject" skipped="false" />
+      <step key="category.workflow.buildembeddedsystem" skipped="false" />
+      <step key="category.workflow.ipcoreprogramtargetdevice" skipped="false" />
+      <step key="category.workflow.fpgaturnkeyintegration" skipped="true" />
+      <step key="category.workflow.buildbitstream" skipped="false" />
+      <step key="category.workflow.fpgaturnkeyprogramtargetdevice" skipped="false" />
+    </workflow>
+    <matlab>
+      <root>C:\Program Files\MATLAB\R2016b</root>
+      <toolboxes>
+        <toolbox name="fixedpoint" />
+        <toolbox name="matlabcoder" />
+        <toolbox name="matlabhdlcoder" />
+        <toolbox name="embeddedcoder" />
+      </toolboxes>
+      <toolbox>
+        <fixedpoint>
+          <enabled>true</enabled>
+        </fixedpoint>
+      </toolbox>
+      <toolbox>
+        <matlabcoder>
+          <enabled>true</enabled>
+        </matlabcoder>
+      </toolbox>
+      <toolbox>
+        <matlabhdlcoder>
+          <enabled>true</enabled>
+        </matlabhdlcoder>
+      </toolbox>
+      <toolbox>
+        <embeddedcoder>
+          <enabled>true</enabled>
+        </embeddedcoder>
+      </toolbox>
+    </matlab>
+    <platform>
+      <unix>false</unix>
+      <mac>false</mac>
+      <windows>true</windows>
+      <win2k>false</win2k>
+      <winxp>false</winxp>
+      <vista>false</vista>
+      <linux>false</linux>
+      <solaris>false</solaris>
+      <osver>6.2</osver>
+      <os32>false</os32>
+      <os64>true</os64>
+      <arch>win64</arch>
+      <matlab>true</matlab>
+    </platform>
+  </configuration>
+</deployment-project>

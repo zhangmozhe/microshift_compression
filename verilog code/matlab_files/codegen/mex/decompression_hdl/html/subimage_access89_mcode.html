@@ -1,0 +1,283 @@
+<!-- saved from url=(0014)about:internet -->
+<div class="dead">
+<pre class="code">
+<span class="srcline"><span class="lineno"><a href="1,1" id="srcline1">  1</a></span><span class="line">function I_recover1 = decompression_hdl(encoded_bitstream,height,width,I_truth,subimage_index,I_subimages)</span></span>
+<span class="srcline"><span class="lineno"><a href="1,2" id="srcline2">  2</a></span><span class="line"></span></span>
+<span class="srcline"><span class="lineno"><a href="1,3" id="srcline3">  3</a></span><span class="line">pixel_index = 1;     <span class="comment">% point to the pixel to be processed</span></span></span>
+<span class="srcline"><span class="lineno"><a href="1,4" id="srcline4">  4</a></span><span class="line">bitstream_index = 1; <span class="comment">% point to the next bit</span></span></span>
+<span class="srcline"><span class="lineno"><a href="1,5" id="srcline5">  5</a></span><span class="line">bitstream_length = length(encoded_bitstream);</span></span>
+<span class="srcline"><span class="lineno"><a href="1,6" id="srcline6">  6</a></span><span class="line">I_recover = zeros(height*width,1);</span></span>
+<span class="srcline"><span class="lineno"><a href="1,7" id="srcline7">  7</a></span><span class="line">range = 8;</span></span>
+<span class="srcline"><span class="lineno"><a href="1,8" id="srcline8">  8</a></span><span class="line">I_truth_vector = I_truth';</span></span>
+<span class="srcline"><span class="lineno"><a href="1,9" id="srcline9">  9</a></span><span class="line">I_truth_vector = I_truth_vector(:);</span></span>
+<span class="srcline"><span class="lineno"><a href="1,10" id="srcline10"> 10</a></span><span class="line">residue_learned = load('residue_learned1.mat');</span></span>
+<span class="srcline"><span class="lineno"><a href="1,11" id="srcline11"> 11</a></span><span class="line">residue_learned = int(residue_learned.residue_learned1);</span></span>
+<span class="srcline"><span class="lineno"><a href="1,12" id="srcline12"> 12</a></span><span class="line"></span></span>
+<span class="srcline"><span class="lineno"><a href="1,13" id="srcline13"> 13</a></span><span class="line">mode = 0;</span></span>
+<span class="srcline"><span class="lineno"><a href="1,14" id="srcline14"> 14</a></span><span class="line">while (bitstream_index &lt;= bitstream_length)</span></span>
+<span class="srcline"><span class="lineno"><a href="1,15" id="srcline15"> 15</a></span><span class="line">    if (mode == 0)</span></span>
+<span class="srcline"><span class="lineno"><a href="1,16" id="srcline16"> 16</a></span><span class="line">        <span class="comment">% context calculation</span></span></span>
+<span class="srcline"><span class="lineno"><a href="1,17" id="srcline17"> 17</a></span><span class="line">        [a,b,c,d,e] = context_calculation_zeropad(I_recover, width, pixel_index);</span></span>
+<span class="srcline"><span class="lineno"><a href="1,18" id="srcline18"> 18</a></span><span class="line">        xx = ceil(pixel_index/width);</span></span>
+<span class="srcline"><span class="lineno"><a href="1,19" id="srcline19"> 19</a></span><span class="line">        yy = mod(pixel_index,width);</span></span>
+<span class="srcline"><span class="lineno"><a href="1,20" id="srcline20"> 20</a></span><span class="line">        if yy == 0</span></span>
+<span class="srcline"><span class="lineno"><a href="1,21" id="srcline21"> 21</a></span><span class="line">            yy = width;</span></span>
+<span class="srcline"><span class="lineno"><a href="1,22" id="srcline22"> 22</a></span><span class="line">        end</span></span>
+<span class="srcline"><span class="lineno"><a href="1,23" id="srcline23"> 23</a></span><span class="line">        g1 = a - c; g2 = c - b; g3 = d - a; g4 = b - e;</span></span>
+<span class="srcline"><span class="lineno"><a href="1,24" id="srcline24"> 24</a></span><span class="line">        </span></span>
+<span class="srcline"><span class="lineno"><a href="1,25" id="srcline25"> 25</a></span><span class="line">        upperbound = 255;</span></span>
+<span class="srcline"><span class="lineno"><a href="1,26" id="srcline26"> 26</a></span><span class="line">        lowerbound = 0;</span></span>
+<span class="srcline"><span class="lineno"><a href="1,27" id="srcline27"> 27</a></span><span class="line">        switch subimage_index</span></span>
+<span class="srcline"><span class="lineno"><a href="1,28" id="srcline28"> 28</a></span><span class="line">            case 1</span></span>
+<span class="srcline"><span class="lineno"><a href="1,29" id="srcline29"> 29</a></span><span class="line">                gq1 = double(g_quantize(g1));</span></span>
+<span class="srcline"><span class="lineno"><a href="1,30" id="srcline30"> 30</a></span><span class="line">                gq2 = double(g_quantize(g2));</span></span>
+<span class="srcline"><span class="lineno"><a href="1,31" id="srcline31"> 31</a></span><span class="line">                gq3 = double(g_quantize(g3));</span></span>
+<span class="srcline"><span class="lineno"><a href="1,32" id="srcline32"> 32</a></span><span class="line">                gq4 = double(g_quantize(g4));</span></span>
+<span class="srcline"><span class="lineno"><a href="1,33" id="srcline33"> 33</a></span><span class="line">                context_index = gq1*5^3 + gq2*5^2 + gq3*5^1 + gq4 + 1;</span></span>
+<span class="srcline"><span class="lineno"><a href="1,34" id="srcline34"> 34</a></span><span class="line">                residue = residue_learned(context_index);</span></span>
+<span class="srcline"><span class="lineno"><a href="1,35" id="srcline35"> 35</a></span><span class="line">                if residue == int8(8)</span></span>
+<span class="srcline"><span class="lineno"><a href="1,36" id="srcline36"> 36</a></span><span class="line">                    if(c &gt;= max(b,a))</span></span>
+<span class="srcline"><span class="lineno"><a href="1,37" id="srcline37"> 37</a></span><span class="line">                        predict_x = min(b,a);</span></span>
+<span class="srcline"><span class="lineno"><a href="1,38" id="srcline38"> 38</a></span><span class="line">                    elseif(c &lt;= min(b,a))</span></span>
+<span class="srcline"><span class="lineno"><a href="1,39" id="srcline39"> 39</a></span><span class="line">                        predict_x = max(b,a);</span></span>
+<span class="srcline"><span class="lineno"><a href="1,40" id="srcline40"> 40</a></span><span class="line">                    else</span></span>
+<span class="srcline"><span class="lineno"><a href="1,41" id="srcline41"> 41</a></span><span class="line">                        predict_x = b + a - c;</span></span>
+<span class="srcline"><span class="lineno"><a href="1,42" id="srcline42"> 42</a></span><span class="line">                    end</span></span>
+<span class="srcline"><span class="lineno"><a href="1,43" id="srcline43"> 43</a></span><span class="line">                else</span></span>
+<span class="srcline"><span class="lineno"><a href="1,44" id="srcline44"> 44</a></span><span class="line">                    predict_x = b + residue;</span></span>
+<span class="srcline"><span class="lineno"><a href="1,45" id="srcline45"> 45</a></span><span class="line">                    if predict_x &lt; 0</span></span>
+<span class="srcline"><span class="lineno"><a href="1,46" id="srcline46"> 46</a></span><span class="line">                        predict_x = 0;</span></span>
+<span class="srcline"><span class="lineno"><a href="1,47" id="srcline47"> 47</a></span><span class="line">                    end</span></span>
+<span class="srcline"><span class="lineno"><a href="1,48" id="srcline48"> 48</a></span><span class="line">                    if predict_x &gt; 7</span></span>
+<span class="srcline"><span class="lineno"><a href="1,49" id="srcline49"> 49</a></span><span class="line">                        predict_x = 7;</span></span>
+<span class="srcline"><span class="lineno"><a href="1,50" id="srcline50"> 50</a></span><span class="line">                    end</span></span>
+<span class="srcline"><span class="lineno"><a href="1,51" id="srcline51"> 51</a></span><span class="line">                end</span></span>
+<span class="srcline"><span class="lineno"><a href="1,52" id="srcline52"> 52</a></span><span class="line">            case 2 <span class="comment">% inter-prediction</span></span></span>
+<span class="srcline"><span class="lineno"><a href="1,53" id="srcline53"> 53</a></span><span class="line">                neighbor1 = subimage_access(I_subimages{1},xx,yy);</span></span>
+<span class="srcline"><span class="lineno"><a href="1,54" id="srcline54"> 54</a></span><span class="line">                [upperbound, lowerbound] = bound_update_scalar(upperbound, lowerbound, neighbor1, int16(0));</span></span>
+<span class="srcline"><span class="lineno"><a href="1,55" id="srcline55"> 55</a></span><span class="line">                predict_x0 = bitsra((upperbound + lowerbound),1) + int16(4);</span></span>
+<span class="srcline"><span class="lineno"><a href="1,56" id="srcline56"> 56</a></span><span class="line">                predict_x0 = uint8(predict_x0);</span></span>
+<span class="srcline"><span class="lineno"><a href="1,57" id="srcline57"> 57</a></span><span class="line">                predict_x = int8(bitsrl(predict_x0, 5));</span></span>
+<span class="srcline"><span class="lineno"><a href="1,58" id="srcline58"> 58</a></span><span class="line">            case 3</span></span>
+<span class="srcline"><span class="lineno"><a href="1,59" id="srcline59"> 59</a></span><span class="line">                neighbor1 = subimage_access(I_subimages{1},xx,yy+1);</span></span>
+<span class="srcline"><span class="lineno"><a href="1,60" id="srcline60"> 60</a></span><span class="line">                neighbor2 = subimage_access(I_subimages{2},xx,yy);</span></span>
+<span class="srcline"><span class="lineno"><a href="1,61" id="srcline61"> 61</a></span><span class="line">                [upperbound, lowerbound] = bound_update_scalar(upperbound, lowerbound, neighbor1, int16(0));</span></span>
+<span class="srcline"><span class="lineno"><a href="1,62" id="srcline62"> 62</a></span><span class="line">                [upperbound, lowerbound] = bound_update_scalar(upperbound, lowerbound, neighbor2, int16(4));</span></span>
+<span class="srcline"><span class="lineno"><a href="1,63" id="srcline63"> 63</a></span><span class="line">                predict_x0 = bitsra((upperbound + lowerbound),1) + int16(7);</span></span>
+<span class="srcline"><span class="lineno"><a href="1,64" id="srcline64"> 64</a></span><span class="line">                predict_x0 = uint8(predict_x0);</span></span>
+<span class="srcline"><span class="lineno"><a href="1,65" id="srcline65"> 65</a></span><span class="line">                predict_x = int8(bitsrl(predict_x0, 5));</span></span>
+<span class="srcline"><span class="lineno"><a href="1,66" id="srcline66"> 66</a></span><span class="line">            case 4</span></span>
+<span class="srcline"><span class="lineno"><a href="1,67" id="srcline67"> 67</a></span><span class="line">                neighbor1 = subimage_access(I_subimages{1},xx,yy+1);</span></span>
+<span class="srcline"><span class="lineno"><a href="1,68" id="srcline68"> 68</a></span><span class="line">                neighbor2 = subimage_access(I_subimages{2},xx,yy);</span></span>
+<span class="srcline"><span class="lineno"><a href="1,69" id="srcline69"> 69</a></span><span class="line">                neighbor3 = subimage_access(I_subimages{3},xx,yy);</span></span>
+<span class="srcline"><span class="lineno"><a href="1,70" id="srcline70"> 70</a></span><span class="line">                [upperbound, lowerbound] = bound_update_scalar(upperbound, lowerbound, neighbor1, int16(0));</span></span>
+<span class="srcline"><span class="lineno"><a href="1,71" id="srcline71"> 71</a></span><span class="line">                [upperbound, lowerbound] = bound_update_scalar(upperbound, lowerbound, neighbor2, int16(4));</span></span>
+<span class="srcline"><span class="lineno"><a href="1,72" id="srcline72"> 72</a></span><span class="line">                [upperbound, lowerbound] = bound_update_scalar(upperbound, lowerbound, neighbor3, int16(7));</span></span>
+<span class="srcline"><span class="lineno"><a href="1,73" id="srcline73"> 73</a></span><span class="line">                predict_x0 = bitsra((upperbound + lowerbound),1) + int16(11);</span></span>
+<span class="srcline"><span class="lineno"><a href="1,74" id="srcline74"> 74</a></span><span class="line">                predict_x0 = uint8(predict_x0);</span></span>
+<span class="srcline"><span class="lineno"><a href="1,75" id="srcline75"> 75</a></span><span class="line">                predict_x = int8(bitsrl(predict_x0, 5));</span></span>
+<span class="srcline"><span class="lineno"><a href="1,76" id="srcline76"> 76</a></span><span class="line">            case 5</span></span>
+<span class="srcline"><span class="lineno"><a href="1,77" id="srcline77"> 77</a></span><span class="line">                neighbor1 = subimage_access(I_subimages{1},xx,yy);</span></span>
+<span class="srcline"><span class="lineno"><a href="1,78" id="srcline78"> 78</a></span><span class="line">                neighbor2 = subimage_access(I_subimages{2},xx,yy);</span></span>
+<span class="srcline"><span class="lineno"><a href="1,79" id="srcline79"> 79</a></span><span class="line">                neighbor3 = subimage_access(I_subimages{3},xx,yy);</span></span>
+<span class="srcline"><span class="lineno"><a href="1,80" id="srcline80"> 80</a></span><span class="line">                neighbor4 = subimage_access(I_subimages{4},xx,yy);</span></span>
+<span class="srcline"><span class="lineno"><a href="1,81" id="srcline81"> 81</a></span><span class="line">                [upperbound, lowerbound] = bound_update_scalar(upperbound, lowerbound, neighbor1, int16(0));</span></span>
+<span class="srcline"><span class="lineno"><a href="1,82" id="srcline82"> 82</a></span><span class="line">                [upperbound, lowerbound] = bound_update_scalar(upperbound, lowerbound, neighbor2, int16(4));</span></span>
+<span class="srcline"><span class="lineno"><a href="1,83" id="srcline83"> 83</a></span><span class="line">                [upperbound, lowerbound] = bound_update_scalar(upperbound, lowerbound, neighbor3, int16(7));</span></span>
+<span class="srcline"><span class="lineno"><a href="1,84" id="srcline84"> 84</a></span><span class="line">                [upperbound, lowerbound] = bound_update_scalar(upperbound, lowerbound, neighbor4, int16(11));</span></span>
+<span class="srcline"><span class="lineno"><a href="1,85" id="srcline85"> 85</a></span><span class="line">                predict_x0 = bitsra((upperbound + lowerbound),1) + int16(14);</span></span>
+<span class="srcline"><span class="lineno"><a href="1,86" id="srcline86"> 86</a></span><span class="line">                predict_x0 = uint8(predict_x0);</span></span>
+<span class="srcline"><span class="lineno"><a href="1,87" id="srcline87"> 87</a></span><span class="line">                predict_x = int8(bitsrl(predict_x0, 5));</span></span>
+<span class="srcline"><span class="lineno"><a href="1,88" id="srcline88"> 88</a></span><span class="line">            case 6</span></span>
+<span class="srcline"><span class="lineno"><a href="1,89" id="srcline89"> 89</a></span><span class="line">                neighbor1 = subimage_access(I_subimages{1},xx,yy);</span></span>
+<span class="srcline"><span class="lineno"><a href="1,90" id="srcline90"> 90</a></span><span class="line">                neighbor2 = subimage_access(I_subimages{2},xx,yy);</span></span>
+<span class="srcline"><span class="lineno"><a href="1,91" id="srcline91"> 91</a></span><span class="line">                neighbor3 = subimage_access(I_subimages{3},xx,yy-1);</span></span>
+<span class="srcline"><span class="lineno"><a href="1,92" id="srcline92"> 92</a></span><span class="line">                neighbor4 = subimage_access(I_subimages{4},xx,yy-1);</span></span>
+<span class="srcline"><span class="lineno"><a href="1,93" id="srcline93"> 93</a></span><span class="line">                neighbor5 = subimage_access(I_subimages{5},xx,yy);</span></span>
+<span class="srcline"><span class="lineno"><a href="1,94" id="srcline94"> 94</a></span><span class="line">                [upperbound, lowerbound] = bound_update_scalar(upperbound, lowerbound, neighbor1, int16(0));</span></span>
+<span class="srcline"><span class="lineno"><a href="1,95" id="srcline95"> 95</a></span><span class="line">                [upperbound, lowerbound] = bound_update_scalar(upperbound, lowerbound, neighbor2, int16(4));</span></span>
+<span class="srcline"><span class="lineno"><a href="1,96" id="srcline96"> 96</a></span><span class="line">                [upperbound, lowerbound] = bound_update_scalar(upperbound, lowerbound, neighbor3, int16(7));</span></span>
+<span class="srcline"><span class="lineno"><a href="1,97" id="srcline97"> 97</a></span><span class="line">                [upperbound, lowerbound] = bound_update_scalar(upperbound, lowerbound, neighbor4, int16(11));</span></span>
+<span class="srcline"><span class="lineno"><a href="1,98" id="srcline98"> 98</a></span><span class="line">                [upperbound, lowerbound] = bound_update_scalar(upperbound, lowerbound, neighbor5, int16(14));</span></span>
+<span class="srcline"><span class="lineno"><a href="1,99" id="srcline99"> 99</a></span><span class="line">                predict_x0 = bitsra((upperbound + lowerbound),1) + int16(18);</span></span>
+<span class="srcline"><span class="lineno"><a href="1,100" id="srcline100">100</a></span><span class="line">                predict_x0 = uint8(predict_x0);</span></span>
+<span class="srcline"><span class="lineno"><a href="1,101" id="srcline101">101</a></span><span class="line">                predict_x = int8(bitsrl(predict_x0, 5));</span></span>
+<span class="srcline"><span class="lineno"><a href="1,102" id="srcline102">102</a></span><span class="line">            case 7</span></span>
+<span class="srcline"><span class="lineno"><a href="1,103" id="srcline103">103</a></span><span class="line">                neighbor1 = subimage_access(I_subimages{1},xx,yy);</span></span>
+<span class="srcline"><span class="lineno"><a href="1,104" id="srcline104">104</a></span><span class="line">                neighbor2 = subimage_access(I_subimages{2},xx,yy);</span></span>
+<span class="srcline"><span class="lineno"><a href="1,105" id="srcline105">105</a></span><span class="line">                neighbor3 = subimage_access(I_subimages{3},xx,yy-1);</span></span>
+<span class="srcline"><span class="lineno"><a href="1,106" id="srcline106">106</a></span><span class="line">                neighbor4 = subimage_access(I_subimages{4},xx,yy-1);</span></span>
+<span class="srcline"><span class="lineno"><a href="1,107" id="srcline107">107</a></span><span class="line">                neighbor5 = subimage_access(I_subimages{5},xx,yy);</span></span>
+<span class="srcline"><span class="lineno"><a href="1,108" id="srcline108">108</a></span><span class="line">                neighbor6 = subimage_access(I_subimages{6},xx,yy);</span></span>
+<span class="srcline"><span class="lineno"><a href="1,109" id="srcline109">109</a></span><span class="line">                [upperbound, lowerbound] = bound_update_scalar(upperbound, lowerbound, neighbor1, int16(0));</span></span>
+<span class="srcline"><span class="lineno"><a href="1,110" id="srcline110">110</a></span><span class="line">                [upperbound, lowerbound] = bound_update_scalar(upperbound, lowerbound, neighbor2, int16(4));</span></span>
+<span class="srcline"><span class="lineno"><a href="1,111" id="srcline111">111</a></span><span class="line">                [upperbound, lowerbound] = bound_update_scalar(upperbound, lowerbound, neighbor3, int16(7));</span></span>
+<span class="srcline"><span class="lineno"><a href="1,112" id="srcline112">112</a></span><span class="line">                [upperbound, lowerbound] = bound_update_scalar(upperbound, lowerbound, neighbor4, int16(11));</span></span>
+<span class="srcline"><span class="lineno"><a href="1,113" id="srcline113">113</a></span><span class="line">                [upperbound, lowerbound] = bound_update_scalar(upperbound, lowerbound, neighbor5, int16(14));</span></span>
+<span class="srcline"><span class="lineno"><a href="1,114" id="srcline114">114</a></span><span class="line">                [upperbound, lowerbound] = bound_update_scalar(upperbound, lowerbound, neighbor6, int16(18));</span></span>
+<span class="srcline"><span class="lineno"><a href="1,115" id="srcline115">115</a></span><span class="line">                predict_x0 = bitsra((upperbound + lowerbound),1) + int16(21);</span></span>
+<span class="srcline"><span class="lineno"><a href="1,116" id="srcline116">116</a></span><span class="line">                predict_x0 = uint8(predict_x0);</span></span>
+<span class="srcline"><span class="lineno"><a href="1,117" id="srcline117">117</a></span><span class="line">                predict_x = int8(bitsrl(predict_x0, 5));</span></span>
+<span class="srcline"><span class="lineno"><a href="1,118" id="srcline118">118</a></span><span class="line">            case 8</span></span>
+<span class="srcline"><span class="lineno"><a href="1,119" id="srcline119">119</a></span><span class="line">                neighbor1 = subimage_access(I_subimages{1},xx,yy);</span></span>
+<span class="srcline"><span class="lineno"><a href="1,120" id="srcline120">120</a></span><span class="line">                neighbor2 = subimage_access(I_subimages{2},xx,yy);</span></span>
+<span class="srcline"><span class="lineno"><a href="1,121" id="srcline121">121</a></span><span class="line">                neighbor3 = subimage_access(I_subimages{3},xx,yy);</span></span>
+<span class="srcline"><span class="lineno"><a href="1,122" id="srcline122">122</a></span><span class="line">                neighbor4 = subimage_access(I_subimages{4},xx,yy);</span></span>
+<span class="srcline"><span class="lineno"><a href="1,123" id="srcline123">123</a></span><span class="line">                neighbor5 = subimage_access(I_subimages{5},xx,yy);</span></span>
+<span class="srcline"><span class="lineno"><a href="1,124" id="srcline124">124</a></span><span class="line">                neighbor6 = subimage_access(I_subimages{6},xx,yy);</span></span>
+<span class="srcline"><span class="lineno"><a href="1,125" id="srcline125">125</a></span><span class="line">                neighbor7 = subimage_access(I_subimages{7},xx,yy);</span></span>
+<span class="srcline"><span class="lineno"><a href="1,126" id="srcline126">126</a></span><span class="line">                [upperbound, lowerbound] = bound_update_scalar(upperbound, lowerbound, neighbor1, int16(0));</span></span>
+<span class="srcline"><span class="lineno"><a href="1,127" id="srcline127">127</a></span><span class="line">                [upperbound, lowerbound] = bound_update_scalar(upperbound, lowerbound, neighbor2, int16(4));</span></span>
+<span class="srcline"><span class="lineno"><a href="1,128" id="srcline128">128</a></span><span class="line">                [upperbound, lowerbound] = bound_update_scalar(upperbound, lowerbound, neighbor3, int16(7));</span></span>
+<span class="srcline"><span class="lineno"><a href="1,129" id="srcline129">129</a></span><span class="line">                [upperbound, lowerbound] = bound_update_scalar(upperbound, lowerbound, neighbor4, int16(11));</span></span>
+<span class="srcline"><span class="lineno"><a href="1,130" id="srcline130">130</a></span><span class="line">                [upperbound, lowerbound] = bound_update_scalar(upperbound, lowerbound, neighbor5, int16(14));</span></span>
+<span class="srcline"><span class="lineno"><a href="1,131" id="srcline131">131</a></span><span class="line">                [upperbound, lowerbound] = bound_update_scalar(upperbound, lowerbound, neighbor6, int16(18));</span></span>
+<span class="srcline"><span class="lineno"><a href="1,132" id="srcline132">132</a></span><span class="line">                [upperbound, lowerbound] = bound_update_scalar(upperbound, lowerbound, neighbor7, int16(21));</span></span>
+<span class="srcline"><span class="lineno"><a href="1,133" id="srcline133">133</a></span><span class="line">                predict_x0 = bitsra((upperbound + lowerbound),1) + int16(25);</span></span>
+<span class="srcline"><span class="lineno"><a href="1,134" id="srcline134">134</a></span><span class="line">                predict_x0 = uint8(predict_x0);</span></span>
+<span class="srcline"><span class="lineno"><a href="1,135" id="srcline135">135</a></span><span class="line">                predict_x = int8(bitsrl(predict_x0, 5));</span></span>
+<span class="srcline"><span class="lineno"><a href="1,136" id="srcline136">136</a></span><span class="line">            case 9</span></span>
+<span class="srcline"><span class="lineno"><a href="1,137" id="srcline137">137</a></span><span class="line">                neighbor1 = subimage_access(I_subimages{1},xx,yy+1);</span></span>
+<span class="srcline"><span class="lineno"><a href="1,138" id="srcline138">138</a></span><span class="line">                neighbor2 = subimage_access(I_subimages{2},xx,yy);</span></span>
+<span class="srcline"><span class="lineno"><a href="1,139" id="srcline139">139</a></span><span class="line">                neighbor3 = subimage_access(I_subimages{3},xx,yy);</span></span>
+<span class="srcline"><span class="lineno"><a href="1,140" id="srcline140">140</a></span><span class="line">                neighbor4 = subimage_access(I_subimages{4},xx,yy);</span></span>
+<span class="srcline"><span class="lineno"><a href="1,141" id="srcline141">141</a></span><span class="line">                neighbor5 = subimage_access(I_subimages{5},xx,yy);</span></span>
+<span class="srcline"><span class="lineno"><a href="1,142" id="srcline142">142</a></span><span class="line">                neighbor6 = subimage_access(I_subimages{6},xx,yy+1);</span></span>
+<span class="srcline"><span class="lineno"><a href="1,143" id="srcline143">143</a></span><span class="line">                neighbor7 = subimage_access(I_subimages{7},xx,yy+1);</span></span>
+<span class="srcline"><span class="lineno"><a href="1,144" id="srcline144">144</a></span><span class="line">                neighbor8 = subimage_access(I_subimages{8},xx,yy);</span></span>
+<span class="srcline"><span class="lineno"><a href="1,145" id="srcline145">145</a></span><span class="line">                [upperbound, lowerbound] = bound_update_scalar(upperbound, lowerbound, neighbor1, int16(0));</span></span>
+<span class="srcline"><span class="lineno"><a href="1,146" id="srcline146">146</a></span><span class="line">                [upperbound, lowerbound] = bound_update_scalar(upperbound, lowerbound, neighbor2, int16(4));</span></span>
+<span class="srcline"><span class="lineno"><a href="1,147" id="srcline147">147</a></span><span class="line">                [upperbound, lowerbound] = bound_update_scalar(upperbound, lowerbound, neighbor3, int16(7));</span></span>
+<span class="srcline"><span class="lineno"><a href="1,148" id="srcline148">148</a></span><span class="line">                [upperbound, lowerbound] = bound_update_scalar(upperbound, lowerbound, neighbor4, int16(11));</span></span>
+<span class="srcline"><span class="lineno"><a href="1,149" id="srcline149">149</a></span><span class="line">                [upperbound, lowerbound] = bound_update_scalar(upperbound, lowerbound, neighbor5, int16(14));</span></span>
+<span class="srcline"><span class="lineno"><a href="1,150" id="srcline150">150</a></span><span class="line">                [upperbound, lowerbound] = bound_update_scalar(upperbound, lowerbound, neighbor6, int16(18));</span></span>
+<span class="srcline"><span class="lineno"><a href="1,151" id="srcline151">151</a></span><span class="line">                [upperbound, lowerbound] = bound_update_scalar(upperbound, lowerbound, neighbor7, int16(21));</span></span>
+<span class="srcline"><span class="lineno"><a href="1,152" id="srcline152">152</a></span><span class="line">                [upperbound, lowerbound] = bound_update_scalar(upperbound, lowerbound, neighbor8, int16(25));</span></span>
+<span class="srcline"><span class="lineno"><a href="1,153" id="srcline153">153</a></span><span class="line">                predict_x0 = bitsra((upperbound + lowerbound),1) + int16(28);</span></span>
+<span class="srcline"><span class="lineno"><a href="1,154" id="srcline154">154</a></span><span class="line">                predict_x0 = uint8(predict_x0);</span></span>
+<span class="srcline"><span class="lineno"><a href="1,155" id="srcline155">155</a></span><span class="line">                predict_x = int8(bitsrl(predict_x0, 5));</span></span>
+<span class="srcline"><span class="lineno"><a href="1,156" id="srcline156">156</a></span><span class="line">        end</span></span>
+<span class="srcline"><span class="lineno"><a href="1,157" id="srcline157">157</a></span><span class="line">                </span></span>
+<span class="srcline"><span class="lineno"><a href="1,158" id="srcline158">158</a></span><span class="line">        if (xx==1 &amp;&amp; yy&gt;1)</span></span>
+<span class="srcline"><span class="lineno"><a href="1,159" id="srcline159">159</a></span><span class="line">            predict_x = e;</span></span>
+<span class="srcline"><span class="lineno"><a href="1,160" id="srcline160">160</a></span><span class="line">        end</span></span>
+<span class="srcline"><span class="lineno"><a href="1,161" id="srcline161">161</a></span><span class="line">        </span></span>
+<span class="srcline"><span class="lineno"><a href="1,162" id="srcline162">162</a></span><span class="line">        <span class="comment">% compute gradients </span></span></span>
+<span class="srcline"><span class="lineno"><a href="1,163" id="srcline163">163</a></span><span class="line">        if(g1 == g2 &amp;&amp; g1 == g3 &amp;&amp; g1 == g4 &amp;&amp; g1 == 0 &amp;&amp; pixel_index &gt; 1)  <span class="comment">% if uniform patch &amp;&amp; not first pixel</span></span></span>
+<span class="srcline"><span class="lineno"><a href="1,164" id="srcline164">164</a></span><span class="line">            mode = 1;                        <span class="comment">% go to runlength mode</span></span></span>
+<span class="srcline"><span class="lineno"><a href="1,165" id="srcline165">165</a></span><span class="line">            run_value = b;</span></span>
+<span class="srcline"><span class="lineno"><a href="1,166" id="srcline166">166</a></span><span class="line">        end</span></span>
+<span class="srcline"><span class="lineno"><a href="1,167" id="srcline167">167</a></span><span class="line">    end</span></span>
+<span class="srcline"><span class="lineno"><a href="1,168" id="srcline168">168</a></span><span class="line">    </span></span>
+<span class="srcline"><span class="lineno"><a href="1,169" id="srcline169">169</a></span><span class="line">    <span class="comment">% predictive mode</span></span></span>
+<span class="srcline"><span class="lineno"><a href="1,170" id="srcline170">170</a></span><span class="line">    if (mode == 0)</span></span>
+<span class="srcline"><span class="lineno"><a href="1,171" id="srcline171">171</a></span><span class="line">        <span class="comment">% step out and decode Golomb code</span></span></span>
+<span class="srcline"><span class="lineno"><a href="1,172" id="srcline172">172</a></span><span class="line">        error_value = 0;</span></span>
+<span class="srcline"><span class="lineno"><a href="1,173" id="srcline173">173</a></span><span class="line">        while(encoded_bitstream(bitstream_index) == '1')</span></span>
+<span class="srcline"><span class="lineno"><a href="1,174" id="srcline174">174</a></span><span class="line">            error_value = error_value + 1;</span></span>
+<span class="srcline"><span class="lineno"><a href="1,175" id="srcline175">175</a></span><span class="line">            bitstream_index = bitstream_index + 1;</span></span>
+<span class="srcline"><span class="lineno"><a href="1,176" id="srcline176">176</a></span><span class="line">            if bitstream_index &gt; bitstream_length</span></span>
+<span class="srcline"><span class="lineno"><a href="1,177" id="srcline177">177</a></span><span class="line">                break;</span></span>
+<span class="srcline"><span class="lineno"><a href="1,178" id="srcline178">178</a></span><span class="line">            end</span></span>
+<span class="srcline"><span class="lineno"><a href="1,179" id="srcline179">179</a></span><span class="line">        end</span></span>
+<span class="srcline"><span class="lineno"><a href="1,180" id="srcline180">180</a></span><span class="line">        bitstream_index = bitstream_index + 1;</span></span>
+<span class="srcline"><span class="lineno"><a href="1,181" id="srcline181">181</a></span><span class="line">        </span></span>
+<span class="srcline"><span class="lineno"><a href="1,182" id="srcline182">182</a></span><span class="line">        <span class="comment">% map back error</span></span></span>
+<span class="srcline"><span class="lineno"><a href="1,183" id="srcline183">183</a></span><span class="line">        error_value_mapped = remap(error_value, predict_x, range);</span></span>
+<span class="srcline"><span class="lineno"><a href="1,184" id="srcline184">184</a></span><span class="line">        x = error_value_mapped + predict_x;</span></span>
+<span class="srcline"><span class="lineno"><a href="1,185" id="srcline185">185</a></span><span class="line">        </span></span>
+<span class="srcline"><span class="lineno"><a href="1,186" id="srcline186">186</a></span><span class="line">        I_recover(pixel_index) = x;</span></span>
+<span class="srcline"><span class="lineno"><a href="1,187" id="srcline187">187</a></span><span class="line">        pixel_index = pixel_index + 1;</span></span>
+<span class="srcline"><span class="lineno"><a href="1,188" id="srcline188">188</a></span><span class="line">    end</span></span>
+<span class="srcline"><span class="lineno"><a href="1,189" id="srcline189">189</a></span><span class="line">    </span></span>
+<span class="srcline"><span class="lineno"><a href="1,190" id="srcline190">190</a></span><span class="line">    <span class="comment">% runlength mode</span></span></span>
+<span class="srcline"><span class="lineno"><a href="1,191" id="srcline191">191</a></span><span class="line">    if (mode == 1)        </span></span>
+<span class="srcline"><span class="lineno"><a href="1,192" id="srcline192">192</a></span><span class="line">        <span class="comment">% distance to the end of line</span></span></span>
+<span class="srcline"><span class="lineno"><a href="1,193" id="srcline193">193</a></span><span class="line">        width1 = mod(pixel_index,width);</span></span>
+<span class="srcline"><span class="lineno"><a href="1,194" id="srcline194">194</a></span><span class="line">        if (width1 == 0)</span></span>
+<span class="srcline"><span class="lineno"><a href="1,195" id="srcline195">195</a></span><span class="line">            width1 = width;</span></span>
+<span class="srcline"><span class="lineno"><a href="1,196" id="srcline196">196</a></span><span class="line">        end</span></span>
+<span class="srcline"><span class="lineno"><a href="1,197" id="srcline197">197</a></span><span class="line">        max_length = width - width1 + 1;</span></span>
+<span class="srcline"><span class="lineno"><a href="1,198" id="srcline198">198</a></span><span class="line">        </span></span>
+<span class="srcline"><span class="lineno"><a href="1,199" id="srcline199">199</a></span><span class="line">        <span class="comment">% step out runlength code</span></span></span>
+<span class="srcline"><span class="lineno"><a href="1,200" id="srcline200">200</a></span><span class="line">        run_count = 0;</span></span>
+<span class="srcline"><span class="lineno"><a href="1,201" id="srcline201">201</a></span><span class="line">        while(encoded_bitstream(bitstream_index) == '1')</span></span>
+<span class="srcline"><span class="lineno"><a href="1,202" id="srcline202">202</a></span><span class="line">            run_count = run_count + 1;</span></span>
+<span class="srcline"><span class="lineno"><a href="1,203" id="srcline203">203</a></span><span class="line">            bitstream_index = bitstream_index + 1;</span></span>
+<span class="srcline"><span class="lineno"><a href="1,204" id="srcline204">204</a></span><span class="line">            if bitstream_index &gt; bitstream_length</span></span>
+<span class="srcline"><span class="lineno"><a href="1,205" id="srcline205">205</a></span><span class="line">                break;</span></span>
+<span class="srcline"><span class="lineno"><a href="1,206" id="srcline206">206</a></span><span class="line">            end</span></span>
+<span class="srcline"><span class="lineno"><a href="1,207" id="srcline207">207</a></span><span class="line">        end</span></span>
+<span class="srcline"><span class="lineno"><a href="1,208" id="srcline208">208</a></span><span class="line">        bitstream_index = bitstream_index + 1;</span></span>
+<span class="srcline"><span class="lineno"><a href="1,209" id="srcline209">209</a></span><span class="line">        </span></span>
+<span class="srcline"><span class="lineno"><a href="1,210" id="srcline210">210</a></span><span class="line">        <span class="comment">% assign run values</span></span></span>
+<span class="srcline"><span class="lineno"><a href="1,211" id="srcline211">211</a></span><span class="line">        for i = 1:run_count</span></span>
+<span class="srcline"><span class="lineno"><a href="1,212" id="srcline212">212</a></span><span class="line">            I_recover(pixel_index) = run_value;</span></span>
+<span class="srcline"><span class="lineno"><a href="1,213" id="srcline213">213</a></span><span class="line">            pixel_index = pixel_index + 1;</span></span>
+<span class="srcline"><span class="lineno"><a href="1,214" id="srcline214">214</a></span><span class="line">        end</span></span>
+<span class="srcline"><span class="lineno"><a href="1,215" id="srcline215">215</a></span><span class="line">        </span></span>
+<span class="srcline"><span class="lineno"><a href="1,216" id="srcline216">216</a></span><span class="line">        <span class="comment">% check EOL</span></span></span>
+<span class="srcline"><span class="lineno"><a href="1,217" id="srcline217">217</a></span><span class="line">        if (run_count &gt;= max_length)</span></span>
+<span class="srcline"><span class="lineno"><a href="1,218" id="srcline218">218</a></span><span class="line">            EOL = 1;</span></span>
+<span class="srcline"><span class="lineno"><a href="1,219" id="srcline219">219</a></span><span class="line">        else</span></span>
+<span class="srcline"><span class="lineno"><a href="1,220" id="srcline220">220</a></span><span class="line">            EOL = 0;</span></span>
+<span class="srcline"><span class="lineno"><a href="1,221" id="srcline221">221</a></span><span class="line">        end</span></span>
+<span class="srcline"><span class="lineno"><a href="1,222" id="srcline222">222</a></span><span class="line">        </span></span>
+<span class="srcline"><span class="lineno"><a href="1,223" id="srcline223">223</a></span><span class="line">        <span class="comment">% step out runvalue code (whether EOL)</span></span></span>
+<span class="srcline"><span class="lineno"><a href="1,224" id="srcline224">224</a></span><span class="line">        if (~EOL)</span></span>
+<span class="srcline"><span class="lineno"><a href="1,225" id="srcline225">225</a></span><span class="line">            [a,b] = context_calculation_zeropad(I_recover, width, pixel_index);</span></span>
+<span class="srcline"><span class="lineno"><a href="1,226" id="srcline226">226</a></span><span class="line">            if (b==a)</span></span>
+<span class="srcline"><span class="lineno"><a href="1,227" id="srcline227">227</a></span><span class="line">                run_interrupt_type = 1;</span></span>
+<span class="srcline"><span class="lineno"><a href="1,228" id="srcline228">228</a></span><span class="line">            else</span></span>
+<span class="srcline"><span class="lineno"><a href="1,229" id="srcline229">229</a></span><span class="line">                run_interrupt_type = 0;</span></span>
+<span class="srcline"><span class="lineno"><a href="1,230" id="srcline230">230</a></span><span class="line">            end</span></span>
+<span class="srcline"><span class="lineno"><a href="1,231" id="srcline231">231</a></span><span class="line">            predict_x = a;</span></span>
+<span class="srcline"><span class="lineno"><a href="1,232" id="srcline232">232</a></span><span class="line">        </span></span>
+<span class="srcline"><span class="lineno"><a href="1,233" id="srcline233">233</a></span><span class="line">            run_error_value_mapped = 0;</span></span>
+<span class="srcline"><span class="lineno"><a href="1,234" id="srcline234">234</a></span><span class="line">            while(encoded_bitstream(bitstream_index) == '1')</span></span>
+<span class="srcline"><span class="lineno"><a href="1,235" id="srcline235">235</a></span><span class="line">                run_error_value_mapped = run_error_value_mapped + 1;</span></span>
+<span class="srcline"><span class="lineno"><a href="1,236" id="srcline236">236</a></span><span class="line">                bitstream_index = bitstream_index + 1;</span></span>
+<span class="srcline"><span class="lineno"><a href="1,237" id="srcline237">237</a></span><span class="line">                if bitstream_index &gt; bitstream_length</span></span>
+<span class="srcline"><span class="lineno"><a href="1,238" id="srcline238">238</a></span><span class="line">                    break;</span></span>
+<span class="srcline"><span class="lineno"><a href="1,239" id="srcline239">239</a></span><span class="line">                end</span></span>
+<span class="srcline"><span class="lineno"><a href="1,240" id="srcline240">240</a></span><span class="line">            end</span></span>
+<span class="srcline"><span class="lineno"><a href="1,241" id="srcline241">241</a></span><span class="line">            bitstream_index = bitstream_index + 1;</span></span>
+<span class="srcline"><span class="lineno"><a href="1,242" id="srcline242">242</a></span><span class="line">            </span></span>
+<span class="srcline"><span class="lineno"><a href="1,243" id="srcline243">243</a></span><span class="line">            <span class="comment">% map back runvalue error</span></span></span>
+<span class="srcline"><span class="lineno"><a href="1,244" id="srcline244">244</a></span><span class="line">            run_error_value = remap(run_error_value_mapped + run_interrupt_type, predict_x, range);</span></span>
+<span class="srcline"><span class="lineno"><a href="1,245" id="srcline245">245</a></span><span class="line">            <span class="comment">%if((run_interrupt_type == 0) &amp;&amp; (b&gt;a))</span></span></span>
+<span class="srcline"><span class="lineno"><a href="1,246" id="srcline246">246</a></span><span class="line">            <span class="comment">%run_error_value = -run_error_value;</span></span></span>
+<span class="srcline"><span class="lineno"><a href="1,247" id="srcline247">247</a></span><span class="line">            <span class="comment">%end</span></span></span>
+<span class="srcline"><span class="lineno"><a href="1,248" id="srcline248">248</a></span><span class="line">            interrupt_value = run_error_value + predict_x;</span></span>
+<span class="srcline"><span class="lineno"><a href="1,249" id="srcline249">249</a></span><span class="line">            </span></span>
+<span class="srcline"><span class="lineno"><a href="1,250" id="srcline250">250</a></span><span class="line">            <span class="comment">% assign interrupt value</span></span></span>
+<span class="srcline"><span class="lineno"><a href="1,251" id="srcline251">251</a></span><span class="line">            I_recover(pixel_index) = interrupt_value;</span></span>
+<span class="srcline"><span class="lineno"><a href="1,252" id="srcline252">252</a></span><span class="line">            pixel_index = pixel_index + 1;</span></span>
+<span class="srcline"><span class="lineno"><a href="1,253" id="srcline253">253</a></span><span class="line">        end</span></span>
+<span class="srcline"><span class="lineno"><a href="1,254" id="srcline254">254</a></span><span class="line">        </span></span>
+<span class="srcline"><span class="lineno"><a href="1,255" id="srcline255">255</a></span><span class="line">        <span class="comment">% return to predictive mode</span></span></span>
+<span class="srcline"><span class="lineno"><a href="1,256" id="srcline256">256</a></span><span class="line">        mode = 0; </span></span>
+<span class="srcline"><span class="lineno"><a href="1,257" id="srcline257">257</a></span><span class="line">    end</span></span>
+<span class="srcline"><span class="lineno"><a href="1,258" id="srcline258">258</a></span><span class="line">    </span></span>
+<span class="srcline"><span class="lineno"><a href="1,259" id="srcline259">259</a></span><span class="line">end <span class="comment">%end of while loop</span></span></span>
+<span class="srcline"><span class="lineno"><a href="1,260" id="srcline260">260</a></span><span class="line"></span></span>
+<span class="srcline"><span class="lineno"><a href="1,261" id="srcline261">261</a></span><span class="line">I_recover1 = reshape(I_recover, [width, height])' * 32;</span></span>
+<span class="srcline"><span class="lineno"><a href="1,262" id="srcline262">262</a></span><span class="line"><span class="comment">% for debugging</span></span></span>
+<span class="srcline"><span class="lineno"><a href="1,263" id="srcline263">263</a></span><span class="line"><span class="comment">% disp(['decompressing the subimage: ', num2str(subimage_index)])</span></span></span>
+<span class="srcline"><span class="lineno"><a href="1,264" id="srcline264">264</a></span><span class="line"><span class="comment">% figure;imshow(abs(double(I_recover1)-double(I_truth)),[0,32]);</span></span></span>
+<span class="srcline"><span class="lineno"><a href="1,265" id="srcline265">265</a></span><span class="line">end</span></span>
+</pre>
+</div>
+<pre class="code">
+<span class="srcline"><span class="lineno"><a href="1,266" id="srcline266">266</a></span><span class="line"></span></span>
+<span class="srcline"><span class="lineno"><a href="1,267" id="srcline267">267</a></span><span class="line"><span class="keyword">function</span> <span class="var type1" id="S80T2U1706">value</span> = subimage_access(<span class="var type1" id="S81T3U1709">subimage</span>,<span class="var type1" id="S82T2U1710">x</span>,<span class="var type1" id="S83T2U1711">y</span>)</span></span>
+<span class="srcline"><span class="lineno"><a href="1,268" id="srcline268">268</a></span><span class="line"><span class="mxinfo " id="T2:U5">[<span class="var type1" id="S84T2U1715">height</span>,<span class="var type1" id="S85T2U1716">width</span>] = size(<span class="var type1" id="S81T3U1719">subimage</span>)</span>;</span></span>
+<span class="srcline"><span class="lineno"><a href="1,269" id="srcline269">269</a></span><span class="line"><span class="mxinfo " id="T11:U9"><span class="keyword">if</span> <span class="mxinfo " id="T11:U10"><span class="var type1" id="S82T2U1726">x</span>==<span class="mxinfo " id="T2:U12">0</span></span> || <span class="mxinfo " id="T11:U13"><span class="var type1" id="S83T2U1729">y</span> == <span class="mxinfo " id="T2:U15">0</span></span> || <span class="mxinfo " id="T11:U16"><span class="var type1" id="S82T2U1732">x</span>&gt;<span class="var type1" id="S84T2U1733">height</span></span> || <span class="mxinfo " id="T11:U19"><span class="var type1" id="S83T2U1735">y</span>&gt;<span class="var type1" id="S85T2U1736">width</span></span></span></span>
+<span class="srcline"><span class="lineno"><a href="1,270" id="srcline270">270</a></span><span class="line">    <span class="mxinfo " id="T2:U22"><span class="var type1" id="S80T2U1739">value</span> = <span class="mxinfo " id="T2:U24">0</span></span>;</span></span>
+<span class="srcline"><span class="lineno"><a href="1,271" id="srcline271">271</a></span><span class="line"><span class="keyword">else</span></span></span>
+<span class="srcline"><span class="lineno"><a href="1,272" id="srcline272">272</a></span><span class="line">    <span class="mxinfo " id="T2:U25"><span class="var type1" id="S80T2U1744">value</span> = <span class="mxinfo " id="T2:U27"><span class="var type1" id="S81T3U1746">subimage</span>(<span class="var type1" id="S82T2U1747">x</span>,<span class="var type1" id="S83T2U1748">y</span>)</span></span>;</span></span>
+<span class="srcline"><span class="lineno"><a href="1,273" id="srcline273">273</a></span><span class="line"><span class="keyword">end</span></span></span></span>
+<span class="srcline"><span class="lineno"><a href="1,274" id="srcline274">274</a></span><span class="line"><span class="keyword">end</span></span></span>
+<span class="srcline"><span class="lineno"><a href="1,275" id="srcline275">275</a></span><span class="line"></span></span>
+<span class="srcline"><span class="lineno"><a href="1,276" id="srcline276">276</a></span><span class="line"></span></span>
+</pre>
