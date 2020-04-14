@@ -3,6 +3,7 @@
 **This is the Matlab and Verilog implementation of the TCSVT paper "Microshift: An Efficient Image Compression Algorithm for Hardware"**
 
 *IEEE link: <https://ieeexplore.ieee.org/document/8529272>*
+*Github code: <https://github.com/zhangmozhe/microshift_compression>*
 
 
 ## Description
