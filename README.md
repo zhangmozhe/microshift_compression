@@ -8,6 +8,8 @@
 
 *Github code: <https://github.com/zhangmozhe/microshift_compression>*
 
+*Synthesis tutorial: <https://github.com/zhangmozhe/microshift_compression/tree/master/VLSI%20design%20flow>*
+
 
 ## Description
 
